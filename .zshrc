@@ -9,12 +9,13 @@ zstyle :compinstall filename '/Users/danishprakash/.zshrc'
 export PS1="[%*] %d % > "
 eval "$(thefuck --alias fuck)"
 alias python='/usr/bin/python3.6'
+alias su='sudo'
 
 #some git aliases
 alias gc='git checkout'
 alias ga='git add'
-alias gpu='git pull -u'
-alias gm='git commit'
+alias gpu='git pull -u origin'
+alias gm='git commit -m'
 alias gs='git status'
 
 
