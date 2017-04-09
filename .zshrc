@@ -7,7 +7,17 @@ bindkey -e
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/danishprakash/.zshrc'
 export PS1="[%*] %d % > "
+eval "$(thefuck --alias fuck)"
+alias python='/usr/bin/python3.6'
+
+#some git aliases
+alias gc='git checkout'
+alias ga='git add'
+alias gpu='git pull -u'
+alias gm='git commit'
+alias gs='git status'
+
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
+# End of lines added by compinstalla
