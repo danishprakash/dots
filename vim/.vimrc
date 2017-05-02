@@ -13,13 +13,19 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
 
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'Buffergator'
 Plugin 'dracula/vim'
+
+"Enable code folding
+set foldmethod=indent
+set foldlevel=99
+
+"Setting the default color scheme
+colorscheme nord
 
 
 " All of your Plugins must be added before the following line
