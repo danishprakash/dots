@@ -25,7 +25,11 @@ set foldmethod=indent
 set foldlevel=99
 
 "Setting the default color scheme
+<<<<<<< HEAD
 colorscheme nord
+=======
+colorscheme dracula
+>>>>>>> c0e24c8e2f96f0a62f6f3c6f800e1b58ce8dec8d
 
 
 " All of your Plugins must be added before the following line

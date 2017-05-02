@@ -1,0 +1,3 @@
+URxvt.externalBorder:	10
+URxvt.scrollBar:	False
+!URxvt.font:		xft:size=10 
