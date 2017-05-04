@@ -6,7 +6,7 @@
 #
 
 gaps inner 10 
-gaps outer 0 
+gaps outer 5 
 
 
 for_window [class="^.*"] border pixel 0
@@ -44,6 +44,9 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
+
+#smart gaps for i3-gaps
+#smart_gaps on
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -99,7 +102,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
 
 set $workspace1 ""
 set $workspace2 ""
@@ -129,6 +132,9 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+
+#enabling gaps on certain workspaces
+workspace $workspace2 gaps outer 0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -190,10 +196,11 @@ bar {
 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 	}
+	height 20
 }
 
 
-exec_always feh --bg-scale /home/danish/Downloads/macos.jpg
+exec_always feh --bg-scale /home/danish/Downloads/image.png
 exec_always --no-startup-id compton -f
 
 #bie Audio controls
