@@ -1,7 +1,6 @@
 URxvt.externalBorder:	16
 URxvt.scrollBar:	False
-!URxvt.font:		xft:Inconsolatas Regular:size=8 
-
+!URxvt.font:		xft:Inconsolatas Regular:size=8
 
 !Nord color scheme
 #define nord0 #2E3440

@@ -2,35 +2,39 @@ set number
 
 set nocompatible              " required
 filetype off                  " required
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+syntax on
+filetype plugin indent on 
 
-" let Vundle manage Vundle, required
+call plug#begin('~/.vim/plugged')
 
-" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
-Plugin 'gmarik/vundle'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'Buffergator'
-Plugin 'dracula/vim'
+"Plugins to install
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+
+"vim-plug section end
+call plug#end()
 
 "Enable code folding
 set foldmethod=indent
 set foldlevel=99
 
+"NERDTree specifics
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"defualt airline theme
+let g:airline_theme='solarized'
+
+
 "Setting the default color scheme
 colorscheme nord
 
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
