@@ -1,6 +1,14 @@
 URxvt.externalBorder:	16
 URxvt.scrollBar:	False
-!URxvt.font:		xft:Inconsolatas Regular:size=8
+URxvt.font:		xft:Source Code Pro Medium:size=10 
+URxvt.letterSpace: -1
+Urxvt.lineSpace: -1
+
+! Clipboard
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
 
 !Nord color scheme
 #define nord0 #2E3440
