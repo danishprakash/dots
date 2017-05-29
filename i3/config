@@ -5,11 +5,14 @@
 # this file and re-run i3-config-wizard(1).
 #
 
+
 gaps inner 10 
-gaps outer 5 
+gaps outer 3 
 
 
 for_window [class="^.*"] border pixel 0
+
+new_window pixel 5
 
 # i3 config file (v4)
 #
@@ -96,13 +99,13 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
-bindsym $mod+d focus child
+#bindsym $mod+d focus child
 
 set $workspace1 ""
 set $workspace2 ""
@@ -144,6 +147,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 
+
 bindsym $mod+r mode "resize"
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -172,7 +176,7 @@ mode "resize" {
 
 
 set $bg-color 	         #2f343f
-set $border-color	 #25272C
+set $border-color	 #666666
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
@@ -180,14 +184,14 @@ set $urgent-bg-color     #E53935
 
 # window colors
 #                       border             background         text                 indicator
-client.focused          $bg-color      	   $bg-color          $text-color          #00ff00
+client.focused          $border-color      	   $bg-color          $text-color          #00ff00
 client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color          #00ff00
 
 # bar
 bar {
-  	status_command i3blocks -c /etc/i3blocks.conf
+  	status_command #i3blocks -c /etc/i3blocks.conf
 	colors {
 		background $bg-color
 	    	separator #757575
@@ -200,8 +204,9 @@ bar {
 }
 
 
-exec_always feh --bg-scale /home/danish/Downloads/image.png
+exec_always feh --bg-scale /home/danish/Desktop/grad.png
 exec_always --no-startup-id compton -f
+exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
 
 #bie Audio controls
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -234,7 +239,7 @@ exec_always --no-startup-id compton -f
 bindsym $mod+Shift+t exec Thunar
 bindsym $mod+Shift+f exec firefox
 bindsym Print exec screenshot
-bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 450 -opacity "94" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 450 -opacity "90" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Futura Bk BT Book 14"
 
 
 # Pulse Audio controls

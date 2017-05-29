@@ -9,8 +9,8 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
+background = #2E3440
+background-alt = #3B4252
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
@@ -18,45 +18,52 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
+[bar/i3]
 ;monitor = ${env:MONITOR:HDMI-1}
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 width = 100%
-height = 27
-;offset-x = 1%
-;offset-y = 1%
-radius = 6.0
-fixed-center = false
+height = 25 
+;offset-x = 20%
+offset-y = 1%
+radius = 0.0 
+fixed-center = true 
+separator= " "
+;bottom = true
+
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 2
 line-color = #f00
 
-border-size = 4
-border-color = #00000000
 
-padding-left = 0
-padding-right = 2
+border-size = 0 
+border-color = #000000 
+
+padding-left = 1 
+padding-right = 1
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1 
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-1 = Futura Bk BT Book:pixelsize=10
+font-0 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = bspwm i3
-modules-center = mpd
+modules-left = i3 
+modules-center = title 
 modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
-tray-padding = 2
+tray-padding = 2 
 ;tray-transparent = true
 ;tray-background = #0063ff
 
 ;wm-restack = bspwm
 ;wm-restack = i3
+;margin-top = 10
 
 ;override-redirect = true
 
@@ -65,10 +72,26 @@ tray-padding = 2
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
+;
+[module/workspaces]
+type = internal/i3
+enable-click = true
+enable-scroll = true
+strip-wsnumbers = true
+
+ws-icon-0 = 1:term;
+ws-icon-default = 1
+
+label-focused-foreground = #dfdfdf 
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
+
+[module/title]
+type = internal/xwindow
+label = %title%
+label-maxlen = 75
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -148,6 +171,8 @@ label-visible-padding = ${self.label-focused-padding}
 label-urgent = %index%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
+
+ws-icon-1 = 1:1
 
 [module/mpd]
 type = internal/mpd
