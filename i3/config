@@ -107,16 +107,16 @@ bindsym $mod+Shift+space floating toggle
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 ""
-set $workspace2 ""
-set $workspace3 ""
-set $workspace4 "" 
+set $a ""
+set $b ""
+set $c ""
+set $d "" 
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace1
-bindsym $mod+2 workspace $workspace2
-bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace $workspace4
+bindsym $mod+1 workspace $a
+bindsym $mod+2 workspace $b 
+bindsym $mod+3 workspace $c
+bindsym $mod+4 workspace $d
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -125,10 +125,10 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+1 move container to workspace $a 
+bindsym $mod+Shift+2 move container to workspace $b
+bindsym $mod+Shift+3 move container to workspace $c
+bindsym $mod+Shift+4 move container to workspace $d
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
