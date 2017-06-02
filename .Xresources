@@ -8,8 +8,22 @@ Urxvt.lineSpace: -1
 URxvt.keysym.M-c:   perl:clipboard:copy
 URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+Urxvt.perl-ext-common: selection-to-clipboard
 
 
+! ------------------------------------------------------------------------------
+! ! ROFI Color theme
+! ! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #2e3440, #4c566a, #2e3440
+rofi.color-normal: #2e3440, #e5e9f0, #2E3440, #434c5e, #eceff4
+rofi.color-active: #2e3440, #81a1c1, #2e3440, #81a1c1, #fdf6e3
+rofi.color-urgent: #2e3440, #d08770, #2e3440, #d08770, #fdf6e3
+
+
+
+
+! 
 !Nord color scheme
 #define nord0 #2E3440
 #define nord1 #3B4252
@@ -50,3 +64,5 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 *.color13: nord15
 *.color14: nord7
 *.color15: nord6
+
+
