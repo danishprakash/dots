@@ -40,19 +40,19 @@ foreground = ${colors.foreground}
 
 line-size = 2
 line-color = #f00
-
-
+;spacing = 25
+module-margin = 3
 
 border-size = 13 
 border-bottom-size = 0 
 border-top-size = 13 
 ;border-color = #000000 
 
-padding-left = 2 
-padding-right = 2
+padding-right = 4 
 
-module-margin-left = 1
-module-margin-right = 1 
+
+;module-margin-left = 1
+;module-margin-right = 1 
 
 ;font-0 = FontAwesome:pixelsize=10
 font-1 = Futura Bk BT Book:size=9
@@ -69,7 +69,7 @@ modules-center = title
 modules-right = filesystem volume memory cpu wlan :battery temperature date
 
 tray-position = right
-tray-padding = 2 
+tray-padding = 5 
 
 ;tray-transparent = true
 ;tray-background = #0063ff
@@ -100,7 +100,7 @@ ws-icon-3 = 4; 
 
 
 
-label-mode-padding = 2
+label-mode-padding = 5
 label-mode-foreground = #dfdfdf
 label-mode-background = ${colors.primary}
 
@@ -110,11 +110,13 @@ label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-foreground = #E5E9F0
 label-focused-underline = #E5E9F0
 ;${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-padding = 10
+;${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
 ;label-unfocused = %index%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused-padding = 6 
+;${module/bspwm.label-occupied-padding}
 label-unfocused-foreground = #727884
 
 ; visible = Active workspace on unfocused monitor
@@ -169,10 +171,10 @@ type = internal/bspwm
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.secondary}
-label-focused-padding = 2
+label-focused-padding = 10
 
 label-occupied = %index%
-label-occupied-padding = 2
+label-occupied-padding = 10
 
 label-urgent = %index%!
 label-urgent-background = ${colors.alert}
@@ -261,6 +263,7 @@ format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #E5E9F0 
 label =   %percentage%%
+module-margin = 20
 
 [module/memory]
 type = internal/memory
@@ -315,7 +318,7 @@ interval = 5
 date = " %d-%m-%Y"
 date-alt = " %Y-%m-%d"
 
-time = %H:%m
+time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix = 
@@ -323,7 +326,7 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #E5E9F0
 ;#BF616A
 ;#0a6cf5
-
+module-margin = 10
 label =  %date%   %time%
 
 [module/volume]
