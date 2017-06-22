@@ -54,14 +54,14 @@ padding-right = 4
 ;module-margin-left = 1
 ;module-margin-right = 1 
 
-;font-0 = FontAwesome:pixelsize=10
-font-1 = Futura Bk BT Book:size=9
-#font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-0 = FontAwesome:pixelsize=10
+font-1 = Futura Bk BT Book:size=8.5
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 ;font-2 = Futura Bk BT Book:pixelsize=9;1
 ;font-0 = tewi:pixelsize=8;1
 
-font-2 = Unifont:fontformat=truetype:size=8:antialias=false;0
-font-0 = FontAwesome:fontformat=truetype:size=8;1
+;font-2 = Unifont:fontformat=truetype:size=8:antialias=false;0
+;font-0 = FontAwesome:fontformat=truetype:size=8;1
 
 
 modules-left = workspaces 
