@@ -14,6 +14,11 @@ call plug#begin('~/.vim/plugged')
 
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+
 
 
 call plug#end()
@@ -22,10 +27,13 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 
+let g:airline_theme='base16'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 
 "default colorscheme
 colorscheme nord
+set backspace=indent,eol,start
 
 filetype plugin indent on    " required
 
