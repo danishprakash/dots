@@ -91,6 +91,7 @@ type = internal/i3
 enable-click = true
 enable-scroll = true
 strip-wsnumbers = true
+wrapping-scroll = false
 
 ws-icon-0 = 1;    
 ws-icon-1 = 2;  

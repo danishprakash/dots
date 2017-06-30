@@ -2,7 +2,7 @@
 
 autoload -U colors && colors
 #prompt
-PS1="%{$fg[red]%Bλ%b%} %{$fg[cyan]%~ %B>%b %}%{$reset_color%}"				#use this when spectrum is sorted out: $FG[154]   
+PS1="%{$fg[red]%Bλ%b%} %{$fg[cyan]%~ %B>>>%b %}%{$reset_color%}"				#use this when spectrum is sorted out: $FG[154]   
 
 #Auto-suggestions plugin (fish-term like)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -21,10 +21,18 @@ alias ls='ls -L1 $LS_OPTIONS'
 alias rs_eve='redshift -O 4800K && clear'
 alias rs_mor='redshift -O 5900K && clear'
 
+#adjusting brightness
+#first check the connected display device id using the below command
+#xrandr -q | grep " connected"
+#which in my case comes out to be 'DVI-0'
+alias blit_set='xrandr --output DVI-0 --brightness'
+alias blit_reset='xrandr --output DVI-0 --brightness 1'
+
 #git
 alias ga='git add'
 alias gm='git commit -m'
 alias gp='git push -u origin master'
+alias gis='git status'
 
 #misc
 alias v='vim'
