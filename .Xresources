@@ -45,8 +45,9 @@ rofi.color-urgent: #2e3440, #d08770, #2e3440, #d08770, #fdf6e3
 *.foreground:   nord4
 *.background:   nord0
 *.cursorColor:  nord4
-*fading: 35
-*fadeColor: nord3
+! using compton for dimming inactive windows, uncomment these if not using compton
+!*fading: 35
+!*fadeColor: nord3
 
 *.color0: nord1
 *.color1: nord11

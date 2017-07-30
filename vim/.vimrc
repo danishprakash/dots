@@ -22,6 +22,9 @@ Plug 'airblade/vim-gitgutter'
 "vim-plug section end
 call plug#end()
 
+"YCM config file
+let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
+
 "Enable code folding
 set foldmethod=indent
 set foldlevel=99

@@ -8,13 +8,16 @@ PS1="%{$fg[red]%Bλ%b%} %{$fg[cyan]%~ %B>>>%b %}%{$reset_color%}"				#use this w
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #some defaults
-export EDITOR=vim                           						# Set default editor to vim
+export EDITOR=vim	#Set default editor to vim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export LS_OPTIONS='--color=auto'
 eval "`dircolors`"
 alias ls='ls -L1 $LS_OPTIONS'
+
+autoload -Uz compinit
+compinit
 
 #aliases#
 #redshift
@@ -39,3 +42,4 @@ alias v='vim'
 alias p3='python3'
 alias sagi='sudo apt-get install'
 alias cl='clear'
+alias amizone='acli.py'
