@@ -1,13 +1,9 @@
 syntax on
 set number
+set cursorline			"highlights current line
 
-set nocompatible              " required
-filetype off                  " required
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set nocompatible		" required
+filetype off			" required
 
 
 call plug#begin('~/.vim/plugged')
