@@ -6,6 +6,7 @@ PS1="%{$fg[red]%Bλ%b%} %{$fg[cyan]%~ %B>>>%b %}%{$reset_color%}"				#use this w
 
 #Auto-suggestions plugin (fish-term like)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/z.sh
 
 #some defaults
 export EDITOR=vim	#Set default editor to vim
@@ -43,3 +44,10 @@ alias p3='python3'
 alias sagi='sudo apt-get install'
 alias cl='clear'
 alias amizone='acli.py'
+alias p='cd ~/programming'
+alias c='cd ~/programming/compro-shscrip-pyscrip/comp-codi'
+
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
