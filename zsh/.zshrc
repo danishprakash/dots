@@ -7,6 +7,7 @@ PS1="%{$fg[red]%Bλ%b%} %{$fg[cyan]%~ %B>>>%b %}%{$reset_color%}"				#use this w
 #Auto-suggestions plugin (fish-term like)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/z.sh
+source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #some defaults
 export EDITOR=vim	#Set default editor to vim
@@ -33,10 +34,11 @@ alias blit_set='xrandr --output DVI-0 --brightness'
 alias blit_reset='xrandr --output DVI-0 --brightness 1'
 
 #git
-alias ga='git add'
-alias gm='git commit -m'
-alias gp='git push -u origin master'
-alias gis='git status'
+alias add='git add'
+alias com='git commit -m'
+alias push='git push -u origin master'
+alias status='git status'
+alias pull='git pull origin master'
 
 #misc
 alias v='vim'
@@ -51,3 +53,4 @@ alias c='cd ~/programming/compro-shscrip-pyscrip/comp-codi'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+source /home/danish/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

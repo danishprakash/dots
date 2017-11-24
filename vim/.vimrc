@@ -18,6 +18,7 @@ Plug 'tpope/vim-surround'
 Plug 'trevordmiller/nova-vim'
 Plug 'townk/vim-autoclose'
 Plug 'tpope/vim-commentary'
+Plug 'chriskempson/base16-vim'
 "Plug 'vim-syntastic/syntastic'
 
 
@@ -85,4 +86,4 @@ set laststatus=2
 set t_Co=256
 
 "Setting the default color scheme
-colorscheme nord 
+colorscheme nord
