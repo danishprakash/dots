@@ -15,12 +15,15 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'junegunn/fzf', {'do': './install --all' }
 Plug 'neomake/neomake'
 Plug 'scrooloose/nerdtree'
-Plug 'prakashdanish/vimport'
+Plug 'ervandew/supertab'
+" Plug 'prakashdanish/vimport'
 
 " Plug 'arcticicestudio/nord-vim'
-" Plug '~/programming/vimport'
 " Plug 'dracula/vim', { 'as': 'dracula' }
 " Plug 'jdkanani/vim-material-theme'
+
+" personal plugins for dev
+Plug '~/programming/vimport'
 
 call plug#end()
 
@@ -38,37 +41,12 @@ let NERDTreeMinimalUI=1
 
 
 " ---------------------------------------------------------
-" Remappings
-" ---------------------------------------------------------
-nnoremap <S-r> :FZF <CR>
-
-"remaps for asyncautocomplete plugin
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-
-" move around wrapped lines as if separate lines
-noremap <silent> j gj
-noremap <silent> k gk
-
-" move to beginning/end of line
-nnoremap H ^
-nnoremap L $
-
-"move 5 lines up and down while holding Shift and j/k
-nnoremap <silent> <S-j> :+5 <CR>
-nnoremap <silent> <S-k> :-5 <CR>
-
-" nnoremap <ESC> :noh<ESC><ESC>
-
-
-
-" ---------------------------------------------------------
 " vim level configurations
 " ---------------------------------------------------------
-syntax enable
+syntax on
 filetype indent on
 colorscheme gruvbox
+let leader="\\"
 set background=dark
 set nowrap
 set smartcase
@@ -96,6 +74,38 @@ set mouse=a
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
+
+
+
+" ---------------------------------------------------------
+" Remappings
+" ---------------------------------------------------------
+
+" convert current word to uppercase and enter insert mode
+nnoremap <S-u> viwU<esc>el
+
+" surround current word with double-quotes
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+" open vimrc in vertial split and source it
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>so :so $MYVIMRC<cr>
+
+nnoremap <S-r> :FZF <cr>
+
+" move around wrapped lines as if separate lines
+noremap <silent> j gj
+noremap <silent> k gk
+
+" move to beginning/end of line
+nnoremap H ^
+nnoremap L $
+
+"move 5 lines up and down while holding Shift and j/k
+nnoremap <silent> <S-j> :+5 <CR>
+nnoremap <silent> <S-k> :-5 <CR>
+
+" nnoremap <ESC> :noh<ESC><ESC>
 
 
 
