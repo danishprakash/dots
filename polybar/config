@@ -1,11 +1,12 @@
-;=====================================================
+;               _       _                
+;   _ __   ___ | |_   _| |__   __ _ _ __ 
+;  | '_ \ / _ \| | | | | '_ \ / _` | '__|
+;  | |_) | (_) | | |_| | |_) | (_| | |   
+;  | .__/ \___/|_|\__, |_.__/ \__,_|_|   
+;  |_|            |___/                  
 ;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/jaagr/polybar
-;
-;   The README contains alot of information
-;
-;=====================================================
+
+
 
 [colors]
 ;background = ${xrdb:color0:#222}
@@ -49,7 +50,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = i3
 modules-center = xwindow
-modules-right = volume player-mpris-simple memory cpu eth temperature date
+modules-right = volume memory cpu eth temperature date
 
 tray-position = right
 tray-padding = 2
