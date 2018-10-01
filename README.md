@@ -1,3 +1,3 @@
 ## Dotfiles
 
-![current setup](https://imgur.com/1yfduPO.png)
+![current setup](https://i.imgur.com/slzYbg8.png)
