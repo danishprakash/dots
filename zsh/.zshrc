@@ -11,10 +11,40 @@
 # functions
 # ---------
 
+# serve current directory using python HTTP server
+function servedir() {
+    # TODO: add handling for python3 and python
+    ip_addr=$(ifconfig | grep 'broadcast' | awk '{print $2}')
+    echo "Serving at: https://$ip_addr:8000"
+    python3 -m http.server 8000
+}
+
+# show battery percentage and charging state
+# source: https://askubuntu.com/questions/69556/how-to-check-battery-status-using-terminal
+function battery() { 
+    level=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'percentage' | awk '{print $2}')
+    charging=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep 'state' | awk '{print $2}')
+    if [[ $charging == "charging" ]]; then
+        echo "Battery level: +$level"
+    else
+        echo "Battery level: -$level"
+    fi
+}
+
+function brightness () {
+    current=$(xrandr --verbose | grep Brightness | awk '{print $2}')
+    if [[ $1 == "-inc" ]]; then
+        value=$((current + 0.2))
+        xrandr --output eDP-1 --brightness $value
+    elif [[ $1 == "-dec" ]]; then
+        value=$((current - 0.2))
+        xrandr --output eDP-1 --brightness $value
+    fi
+}
+
 # open fzf window with dirs and cd into it
-# TODO: add ability to clear prompt before cd(ing)
 function quick_find () {
-    dir=$(find ~ ~/programming -not -path '*/\.*' -type d -maxdepth 1 | fzf --layout=reverse)
+    dir=$(find ~ -not -path '*/\.*' -type d -maxdepth 1 | fzf --layout=reverse)
     cd $dir
     zle reset-prompt
 }
@@ -95,9 +125,9 @@ zstyle :compinstall filename '/Users/danishprakash/.zshrc'
 # source
 # ------
 
-source ~/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 
 
@@ -120,6 +150,7 @@ alias gac='git add . && git commit'
 # general
 alias rm='rm -i'                               # ask for confirmation before rm
 alias ls='ls -FG'                              # adds trailing '/' for dirs and -G for colors
+alias ll='ls -FGal'                              # adds trailing '/' for dirs and -G for colors
 alias ez='nvim ~/.zshrc'	                   # open .zshrc for editing
 alias sz='source ~/.zshrc'	                   # source .zshrc
 alias tree='tree -I '.git''	                   # skip .git dir in trees
@@ -128,6 +159,10 @@ alias vi='nvim'
 alias venv='workon $(workon | fzf --layout=reverse)'
 
 alias blog='bundle exec jekyll serve'	       # deploy blog to localhost
+
+# brightness controls for datagrokr ubuntu
+alias bl='sudo brightnessctl s 2%-'
+alias bh='sudo brightnessctl s +2%'
 
 autoload -Uz compinit
 compinit
@@ -152,8 +187,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # virtualenvwrapper
 # -----------------
 
-export WORKON_HOME=~/virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+# export WORKON_HOME=~/virtualenvs
+# source /usr/local/bin/virtualenvwrapper.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
