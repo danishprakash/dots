@@ -10,12 +10,15 @@
 " vim-zen
 " -------
 
-call plug#begin()
+call plug#begin('~/.local/share/nvim/plugged')
 
 " code formatting
 Plug 'w0rp/ale'
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
+Plug 'sheerun/vim-polyglot'
+Plug 'prettier/vim-prettier'
+Plug 'pangloss/vim-javascript'
 
 " corschemes
 Plug 'morhetz/gruvbox'
@@ -28,6 +31,7 @@ Plug 'dhruvasagar/vim-table-mode'
 
 " geral utils
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 Plug 'junegunn/goyo.vim'
 Plug 'simeji/winresizer'
@@ -36,7 +40,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'townk/vim-autoclose'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
-Plug 'terryma/vim-smooth-scroll'
 
 " se
 Plug 'danishprakash/vimport'
@@ -49,6 +52,7 @@ Plug 'danishprakash/vim-githubinator'
 " Plugin 'prakashdanish/vimport'
 " Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 
+call plug#end()
 
 
 
@@ -61,6 +65,8 @@ let g:python2_host_prog = '/usr/local/bin/python'
 let g:completor_python_binary = '/usr/local/bin/python3'
 let g:python3_host_prog = '/usr/local/Cellar/python3/3.6.3/bin/python3'
 let g:githubinator_no_default_mapping=0
+let g:nord_comment_brightness = 10
+let g:ale_linters = {'python': ['flake8'], 'javascript.jsx': ['eslint']}
 
 
 
@@ -89,10 +95,10 @@ set expandtab
 set completeopt+=menuone
 set nohlsearch
 set magic
+set ai                   " auto indent
+set si                   " smart indent
 
 " set ruler
-" set ai                   " auto indent
-" set si                   " smart indent
 " set mouse=a              " allows mouse interaction within vim
 " set completeopt-=preview " deoplete: turn off preview window
 
@@ -120,6 +126,43 @@ autocmd FileType markdown set wrap
 " remappings
 " ----------
 
+" cycle through buffers
+nnoremap <C-n> :bnext<CR>
+nnoremap <C-p> :bprevious<CR>
+
+" add new line(o/O) without entering insert mode
+nnoremap <leader>o o<esc>
+nnoremap <leader>O O<esc>
+
+" overwrite write op on protected files
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" remap C-/ to comment out the current line
+nnoremap <C-_> gcc
+
+" toggle gitgutter
+nnoremap <leader>gt :GitGutterToggle<CR>
+
+" open file finder
+nnoremap <leader>1 :Files<CR>
+
+" open line finder
+nnoremap <leader>2 :Lines<CR>
+
+" open buffer finder
+nnoremap <leader>3 :Buffers<CR>
+
+" search using rg
+nnoremap <leader>4 :Rg 
+
+" \_ uses last changed or yanked text as an object
+onoremap <leader>_ :<C-U>normal! `[v`]<CR>
+
+" remap return to ':'
+nnoremap <CR> :
+
+" start nerdtree 
+nnoremap <leader>nd :NERDTreeToggle<CR>
 " smooth scroll plugin mappings
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
@@ -179,9 +222,6 @@ nnoremap <silent> <C-k> :-5 <CR>
 " source plugin file (dev)
 nnoremap <leader>sp :so /Users/danishprakash/.local/share/nvim/site/autoload/zen.vim<cr>
 
-" fzf fuzzy finder
-nnoremap <C-p> :FZF <cr>
-
 
 
 
@@ -195,8 +235,8 @@ function! GitBranch() abort
 endfunction
 
 set statusline=                     " clear the statusline
-" set statusline=%#FilePath#
-" set statusline+=\ %F\               " path of the file
+set statusline=%#FilePath#
+set statusline+=\ %F\               " path of the file
 set statusline+=%#GitBranch#
 set statusline+=[%{GitBranch()}]\ " git branch
 set statusline+=%#Sep1#
@@ -205,19 +245,7 @@ set statusline+=%#FileType#
 set statusline+=\ [%Y]\             " filetype
 set statusline+=%#CursorInfo#
 set statusline+=[%l:%c]           " current row and column
-" set statusline+=\ %p\ \             " percentage of file at current cursor position
-
-" hi statusline ctermfg=00 ctermbg=02 cterm=NONE
-" hi statusline ctermbg=white ctermfg=gray
-" hi StatuslineNC ctermfg=00 ctermbg=02 cterm=NONE 
-" hi VertSplit ctermfg=235 ctermbg=237
-
-" " statusline colors
-" hi GitBranch ctermbg=00 ctermfg=02
-" hi FileType ctermbg=00 ctermfg=02
-" hi CursorInfo ctermbg=00 ctermfg=02
-" hi Sep1 ctermbg=00 ctermfg=02
-" hi FilePath ctermbg=00 ctermfg=02
+set statusline+=\ %p\ \             " percentage of file at current cursor position
 
 
 
@@ -226,14 +254,16 @@ set statusline+=[%l:%c]           " current row and column
 " ------
 
 syntax on
-colorscheme nord
+colorscheme gruvbox
+filetype off
 filetype plugin indent on
 set listchars=tab:│\ ,nbsp:␣,trail:∙,extends:>,precedes:<
-set fillchars=vert:\│
+set fillchars=vert:\|
 
-"hi LineNr ctermfg=1 ctermbg=1
+" hi LineNr ctermfg=58 ctermbg=1
 hi Default ctermfg=1
 hi Search ctermbg=58 ctermfg=15
+hi EndOfBuffer ctermfg=235 ctermbg=235
 
 hi clear SignColumn
 " hi SignColumn ctermbg=235
