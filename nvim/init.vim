@@ -25,15 +25,16 @@ Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
 
-" tae mode
+" tabular mode
 Plug 'godlygeek/tabular'
 Plug 'dhruvasagar/vim-table-mode'
 
-" geral utils
+" general utils
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'simeji/winresizer'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
@@ -66,8 +67,13 @@ let g:completor_python_binary = '/usr/local/bin/python3'
 let g:python3_host_prog = '/usr/local/Cellar/python3/3.6.3/bin/python3'
 let g:githubinator_no_default_mapping=0
 let g:nord_comment_brightness = 10
-let g:ale_linters = {'python': ['flake8'], 'javascript.jsx': ['eslint']}
-
+let g:ale_linters = {'python': ['flake8'], 'javascript': ['eslint']}
+let g:ale_fixers = {'javascript': ['prettier']}
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_default_coefficient = 0.7
+let g:ale_fix_on_save=1
+let g:gitgutter_max_signs = 1000
 
 
 
@@ -89,6 +95,7 @@ set shortmess+=c         " Shut off completion messages
 set belloff+=ctrlg       " If Vim beeps during completion
 set noshowmode           " hide current mode label
 set mouse=a              " enable mouse for `a`ll modes
+set signcolumn=yes	     " show sign column always
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -97,6 +104,8 @@ set nohlsearch
 set magic
 set ai                   " auto indent
 set si                   " smart indent
+set undofile	         " maintain undo history bw sessions
+set undodir=~/.config/nvim/undodir
 
 " set ruler
 " set mouse=a              " allows mouse interaction within vim
@@ -163,11 +172,6 @@ nnoremap <CR> :
 
 " start nerdtree 
 nnoremap <leader>nd :NERDTreeToggle<CR>
-" smooth scroll plugin mappings
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 " enable Goyo for markdown writing and toggle ALE
 nnoremap <leader>go :Goyo<cr> :ALEToggle<cr>
@@ -195,7 +199,7 @@ nnoremap <leader>v :vnew<cr>:FZF ~/programming<cr>
 nnoremap <S-u> viwU<esc>el
 
 " comment using commentary
-nnoremap <leader>q :q<cr>
+nnoremap <leader>q :bd<cr>
 
 " save current file
 nnoremap <leader>p <esc>:w<cr>
@@ -230,7 +234,7 @@ nnoremap <leader>sp :so /Users/danishprakash/.local/share/nvim/site/autoload/zen
 
 " function to return branch name of working directory
 function! GitBranch() abort
-    let l:branch = system("git symbolic-ref HEAD | awk 'BEGIN{FS=\"/\"} {print $3}'")
+    let l:branch = system("git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS=\"/\"} {print $3}'")
     return len(l:branch) > 0 ? substitute(l:branch, '\n', '', '') : '' 
 endfunction
 
@@ -266,12 +270,12 @@ hi Search ctermbg=58 ctermfg=15
 hi EndOfBuffer ctermfg=235 ctermbg=235
 
 hi clear SignColumn
-" hi SignColumn ctermbg=235
-" hi EndOfBuffer ctermfg=235 ctermbg=235
-" hi GitGutterAdd ctermbg=235 ctermfg=235
-" hi GitGutterChange ctermbg=235 ctermfg=235
-" hi GitGutterDelete ctermbg=235 ctermfg=235
-" hi GitGutterChangeDelete ctermbg=235 ctermfg=235
+hi SignColumn ctermbg=235
+hi EndOfBuffer ctermfg=235 ctermbg=235
+hi GitGutterAdd ctermbg=235 ctermfg=2
+hi GitGutterChange ctermbg=235 ctermfg=10
+hi GitGutterDelete ctermbg=235 ctermfg=1
+hi GitGutterChangeDelete ctermbg=235 ctermfg=10
 hi Visual ctermfg=White ctermbg=Black
 
 

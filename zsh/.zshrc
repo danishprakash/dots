@@ -94,6 +94,13 @@ function mans () {
 setopt auto_cd               # auto cd when writing dir in the shell
 setopt correctall            # correct typo(ed) commands
 setopt prompt_subst          # allow command, param and arithmetic expansion in the prompt
+setopt MENU_COMPLETE
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+setopt EMACS
+
 
 # lines configured by zsh-newuser-install
 export TERM=xterm-256color
@@ -114,6 +121,9 @@ bindkey '^n' down-line-or-search
 bindkey '^i' complete-word
 bindkey '^f' emacs-forward-word
 bindkey '^b' emacs-backward-word
+bindkey '^a' vi-beginning-of-line
+bindkey '^k' vi-kill-eol
+bindkey '^H' backward-kill-word
 
 # The following lines were added by compinstall
 zstyle :compinstall filename '/Users/danishprakash/.zshrc'
@@ -161,8 +171,8 @@ alias venv='workon $(workon | fzf --layout=reverse)'
 alias blog='bundle exec jekyll serve'	       # deploy blog to localhost
 
 # brightness controls for datagrokr ubuntu
-alias bl='sudo brightnessctl s 2%-'
-alias bh='sudo brightnessctl s +2%'
+alias bl='sudo brightnessctl s 5%-'
+alias bh='sudo brightnessctl s +5%'
 
 autoload -Uz compinit
 compinit
@@ -175,7 +185,7 @@ compinit
 # -------
 
 export PATH=/usr/local/bin:/usr/local/Cellar:/bin:/usr/sbin:/sbin:/usr/bin:/Library/TeX/Root/bin/x86_64-darwin/
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="/usr/bin/nvim"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
@@ -193,3 +203,10 @@ export PATH="$PATH:$HOME/.rvm/bin"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/danish/datagrokr/sam-local/sam-app/hello_world/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/danish/datagrokr/sam-local/sam-app/hello_world/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/danish/datagrokr/sam-local/sam-app/hello_world/node_modules/tabtab/.completions/sls.zsh ]] && . /home/danish/datagrokr/sam-local/sam-app/hello_world/node_modules/tabtab/.completions/sls.zsh
