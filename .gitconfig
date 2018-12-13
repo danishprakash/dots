@@ -1,0 +1,7 @@
+[user]
+	email = grafitykoncept@gmail.com
+	name = danishprakash
+[core]
+	editor = nvim
+[alias]
+    num = log --pretty=oneline

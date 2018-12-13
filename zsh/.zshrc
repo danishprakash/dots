@@ -11,6 +11,62 @@
 # functions
 # ---------
 
+# search for a pattern and open the file
+function rf() {
+    result=$(rg --no-heading -n $1 . | fzf --reverse)
+    file_path=$(echo $result | awk -F ':' '{print $1}')
+    line_number=$(echo $result | awk -F ':' '{print $2}')
+    nvim $file_path +$line_number
+}
+
+# find and kill process by pid
+function kp() {
+    kill -9 $(ps -ef | fzf --reverse | awk '{print $2}') &> /dev/null
+    if [[ $? != "0" ]]
+    then
+        echo "Unable to kill process"
+    fi
+}
+
+# facilitate new git repo
+function create_repo() {
+    git init &> /dev/null && echo "Created repo"
+    echo -n "Add remote (y/n): "
+    read choice
+    if [[ $choice =~ ^[Yy]$ ]]
+    then
+        echo -n "Enter remote: "
+        read remote
+        git remote add origin $remote
+    fi
+}
+
+# open fzf window with dirs and cd into it
+function quick_find () {
+    dir=$(find ~ ~/programming -not -path '*/\.*' -type d -maxdepth 1 | fzf --layout=reverse --preview "ls -FG {}")
+    if [[ "$?" != "0" ]]; then return; fi;
+    cd $dir
+    zle reset-prompt
+}
+
+zle -N quick_find_widget quick_find # define a widget for the func above
+bindkey "^o" quick_find_widget     # remap ^i to the widget -> func
+
+# list all files in current dir tree wit preview
+# select one to open in vim
+function edit_files () {
+    file=$(find . -type f -not -path '*/\.git/*' | fzf --layout=reverse --preview "cat {}")
+
+    if [[ "$?" != "0" ]]; then
+        return
+    fi
+
+    nvim $file
+}
+
+zle -N edit_files_widget edit_files
+bindkey "^w" edit_files_widget
+
 # serve current directory using python HTTP server
 function servedir() {
     # TODO: add handling for python3 and python
@@ -99,7 +155,6 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
-setopt EMACS
 
 
 # lines configured by zsh-newuser-install
@@ -156,6 +211,7 @@ alias gpu='git push origin'
 alias gp='git pull origin'
 alias gd='git diff'
 alias gac='git add . && git commit'
+alias gn='git num | wc -l'
 
 # general
 alias rm='rm -i'                               # ask for confirmation before rm

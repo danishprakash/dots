@@ -10,7 +10,8 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #2f343f
+; background = #1E2127
+background = #000000
 background-alt = #2f343f
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -22,7 +23,7 @@ alert = #bd2c40
 [bar/top]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 30
+height = 25
 ;offset-x = 10%
 ;offset-y = 0
 radius = 0
@@ -385,3 +386,4 @@ margin-top = 5
 margin-bottom = 5
 
 ; vim:ft=dosini
+

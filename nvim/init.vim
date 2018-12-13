@@ -24,6 +24,10 @@ Plug 'pangloss/vim-javascript'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'arcticicestudio/nord-vim'
+Plug 'junegunn/seoul256.vim'
+Plug 'crusoexia/vim-monokai'
+Plug 'Lokaltog/vim-monotone'
+Plug 'ewilazarus/preto'
 
 " tabular mode
 Plug 'godlygeek/tabular'
@@ -34,7 +38,6 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
 Plug 'simeji/winresizer'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdtree'
@@ -42,9 +45,10 @@ Plug 'townk/vim-autoclose'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 
-" se
+" personal
 Plug 'danishprakash/vimport'
 Plug 'danishprakash/vim-githubinator'
+Plug 'Users/danishprakash/programming/vim-blameline/blameline.vim'
 
 " Plugin 'neomake/neomake'
 " Plugin 'prakashdanish/vim-githubinator'
@@ -62,16 +66,13 @@ call plug#end()
 
 let g:leader="\\"
 let g:NERDTreeMinimalUI=1
-let g:python2_host_prog = '/usr/local/bin/python'
-let g:completor_python_binary = '/usr/local/bin/python3'
-let g:python3_host_prog = '/usr/local/Cellar/python3/3.6.3/bin/python3'
+let g:python2_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+let g:completor_python_binary = '/usr/bin/python3'
 let g:githubinator_no_default_mapping=0
 let g:nord_comment_brightness = 10
 let g:ale_linters = {'python': ['flake8'], 'javascript': ['eslint']}
-let g:ale_fixers = {'javascript': ['prettier']}
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_guifg = 'DarkGray'
-let g:limelight_default_coefficient = 0.7
+let g:ale_fixers = {'javascript': ['prettier'], 'python': ['autopep8']}
 let g:ale_fix_on_save=1
 let g:gitgutter_max_signs = 1000
 
@@ -114,8 +115,16 @@ set undodir=~/.config/nvim/undodir
 
 
 
-" autocmds
+" autocommands
 " --------
+
+" disable syntax highlighting for markdown files
+augroup textfiles
+  autocmd!
+  autocmd filetype markdown :setlocal spell spelllang=en |
+  autocmd filetype markdown :syntax off |
+  autocmd filetype markdown :setlocal wrap
+augroup end
 
 " source vimrc when saved 
 augroup VimReload
@@ -124,16 +133,16 @@ augroup VimReload
 augroup END
 
 " setting wrap while editing markdown files
-autocmd FileType markdown set wrap
+autocmd FileType markdown setlocal wrap nocursorline
 
 " start NERDTree on start-up 
-" autocmd VimEnter * NERDTree
-
-
 
 
 " remappings
 " ----------
+
+" create TODO: shorthand
+nnoremap <leader>td oTODO: <ESC>:Commentary<CR>A
 
 " cycle through buffers
 nnoremap <C-n> :bnext<CR>
@@ -173,9 +182,6 @@ nnoremap <CR> :
 " start nerdtree 
 nnoremap <leader>nd :NERDTreeToggle<CR>
 
-" enable Goyo for markdown writing and toggle ALE
-nnoremap <leader>go :Goyo<cr> :ALEToggle<cr>
-
 " run current python file    
 nnoremap <leader>l3 :!python3 expand('%:p')<cr>
 
@@ -212,8 +218,8 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>so :so $MYVIMRC<cr>
 
 " move around wrapped lines as if separate lines
-noremap <silent> j gj
-noremap <silent> k gk
+" noremap <silent> j gj
+" noremap <silent> k gk
 
 " move to beginning/end of line
 nnoremap H ^
@@ -248,7 +254,7 @@ set statusline+=%=                  " right align items henceforth
 set statusline+=%#FileType#
 set statusline+=\ [%Y]\             " filetype
 set statusline+=%#CursorInfo#
-set statusline+=[%l:%c]           " current row and column
+set statusline+=[%l:%c]             " current row and column
 set statusline+=\ %p\ \             " percentage of file at current cursor position
 
 
@@ -258,27 +264,34 @@ set statusline+=\ %p\ \             " percentage of file at current cursor posit
 " ------
 
 syntax on
-colorscheme gruvbox
+colorscheme preto
 filetype off
 filetype plugin indent on
 set listchars=tab:│\ ,nbsp:␣,trail:∙,extends:>,precedes:<
 set fillchars=vert:\|
 
 " hi LineNr ctermfg=58 ctermbg=1
-hi Default ctermfg=1
+" hi Default ctermfg=1
 hi Search ctermbg=58 ctermfg=15
-hi EndOfBuffer ctermfg=235 ctermbg=235
+
+hi Comment ctermfg=237
+hi SpellBad none
+hi SpellBad cterm=underline
 
 hi clear SignColumn
-hi SignColumn ctermbg=235
-hi EndOfBuffer ctermfg=235 ctermbg=235
-hi GitGutterAdd ctermbg=235 ctermfg=2
-hi GitGutterChange ctermbg=235 ctermfg=10
-hi GitGutterDelete ctermbg=235 ctermfg=1
-hi GitGutterChangeDelete ctermbg=235 ctermfg=10
+" hi SignColumn ctermbg=232
+hi EndOfBuffer ctermfg=232 ctermbg=232
+hi GitGutterAdd ctermfg=2
+hi GitGutterChange ctermfg=10
+hi GitGutterDelete ctermfg=1
+hi GitGutterChangeDelete ctermfg=10
 hi Visual ctermfg=White ctermbg=Black
+hi CursorLine ctermfg=none ctermbg=235
 
-
+hi StatusLine ctermbg=234 ctermfg=darkgray
+hi StatusLineNC ctermbg=234 ctermfg=darkgray
+hi FilePath ctermbg=234 ctermfg=darkgray
+hi Sep1 ctermbg=234 ctermfg=darkgray
 
 
 
@@ -301,3 +314,23 @@ function! StrobeCursorLine()
     endfor
 endfunction
 
+
+" return length of longest line in the file 
+function! LongestLine() abort
+    let l:longest = 0
+    let l:current = 1
+    let l:total_lines = line('$')
+    let l:old_cursor = getcurpos()
+
+    while current <= total_lines
+        call setpos('.', [0, l:current, 1])
+        let l:column_length = col('$')
+        if l:column_length > l:longest
+            let l:longest = l:column_length
+        endif
+        let l:current += 1
+    endwhile
+
+    call setpos('.', l:old_cursor)
+    return l:longest
+endfunction

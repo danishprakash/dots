@@ -8,9 +8,7 @@
 
 set $mod Mod4
 
-gaps outer 3
-gaps inner 7
-for_window [class="^.*"] border pixel 5
+for_window [class="^.*"] border pixel 2
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -20,7 +18,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -138,7 +136,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 set $bg-color 	         #2f343f
-set $border-color	     #666666
+# set $border-color	     #666666
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
@@ -154,8 +152,24 @@ client.urgent           $urgent-bg-color   $urgent-bg-color   $text-color       
 # set wallpaper
 # exec_always feh --bg-scale /home/danish/Downloads/wall.jpg
 
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec brightnessctl s +5% # increase screen brightness
+bindsym XF86MonBrightnessDown exec brightnessctl s 5%- # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # Set wallpaper as a solid bg
 exec_always --no-startup-id hsetroot -solid '#404552'
 exec_always xrdb ~/.Xresources
 exec_always polybar top
 exec_always --no-startup-id compton --inactive-dim=0.1 -f
+
